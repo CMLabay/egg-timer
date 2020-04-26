@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     @IBOutlet weak var eggLabel: UILabel!
@@ -15,6 +16,7 @@ class ViewController: UIViewController {
     var timer = Timer()
     var totalTime = 0
     var secondsPassed = 0
+    var player = AVAudioPlayer()
     let eggTimes : [String : Int] = ["Soft": 3, "Medium": 4, "Hard": 7]
     @IBAction func hardnessSelected(_ sender: UIButton) {
         timer.invalidate()
@@ -36,6 +38,22 @@ class ViewController: UIViewController {
             //show done
             timer.invalidate()
             eggLabel.text = "DONE!"
+            playDone()
+        }
+    }
+    
+    func playDone(){
+        let path = Bundle.main.path(forResource: "alarm_sound", ofType : "mp3")!
+        let url = URL(fileURLWithPath : path)
+
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player.play()
+
+        } catch {
+
+            print ("There is an issue with this code!")
+
         }
     }
 }
