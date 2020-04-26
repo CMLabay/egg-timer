@@ -10,6 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
-
-
+    let eggTimes : [String : Int] = ["Soft": 5, "Medium": 7, "Hard": 12]
+    @IBAction func hardnessSelected(_ sender: UIButton) {
+        if(sender.currentTitle != nil){
+            print(eggTimes[sender.currentTitle!])
+        }
+    }
 }
